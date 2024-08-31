@@ -1,66 +1,51 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Laracon 2024 Puzzles
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+My solutions to the puzzles and contests at Laracon (Laravel Conference) 2024 in Deep Ellum, Dallas TX
 
-## About Laravel
+## Tighten Puzzles
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+I was not aware of the [Tighten Puzzles](https://puzzle.tighten.com/) until Tighten mentioned them on stage in the middle of day 2. The contest had been open for 24+ hours, so I could not compete for first to complete. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+I focused my efforts on smallest solution. For the following 3 puzzles, I scored 2nd, 2nd, and 3rd place, respectively. I was able to reconstruct my process through multiple commits. You can compare my commit messages and changes in each commit to understand how I solved each puzzle and minified my results through an iterative approach.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Puzzle 1: DRAGONS NOT PRESENT
 
-## Learning Laravel
+#### PROBLEM STATEMENT
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The paths.php file in Laravel used to include a friendly ASCII dragon. If we want Taylor to bring it back, we need to make some changes ... flip the dragon to face the other direction, making sure to also flip any “reversible” characters like ")" → "(" and "b" → "d".
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### APPROACH
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+I split the input into individual lines, reversed and substituted characters as I iterated each line. I then joined the lines back together and printed the result.
 
-## Laravel Sponsors
+#### NOTES
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+This was my first attempt at a minifying solution. I believe I could have applied a few techniques I discovered while solving puzzle 3 to further reduce the size of my solution.
 
-### Premium Partners
+### Puzzle 2: ARRAY TO TABLE
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#### PROBLEM STATEMENT
 
-## Contributing
+Given a JSON string of data, print it as a table. The first row should be the keys, and the following rows should be the values. The table should be wrapped with a border of +, -, and | characters.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### APPROACH
 
-## Code of Conduct
+I defined metadata for each column (Column Name and Column Width), decoded the JSON input into an array, constructed separator and title and data lines, then printed the result. During minification, I reduced the metadata to a list of column widths and calculated column header names from the JSON property names.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### NOTES
 
-## Security Vulnerabilities
+This was my second attempt at a minifying solution. I believe I could have applied a few techniques I discovered while solving puzzle 3 to further reduce the size of my solution.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Puzzle 3: SYSTEM COLLAPSE
 
-## License
+#### PROBLEM STATEMENT
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Imagine a set of words, each on their own line. Now, turn on the gravity, and let the letters fall straight down. You’re given the newline-separated list of words below, and you must output the result of the letters falling vertically down until they “stand” on something.
+
+#### APPROACH
+
+I loaded the input into a multi-dimension array, then iterated through each column to drop the letters.
+
+#### NOTES
+
+I believe I could have further optimised this solution another 10-20 bytes by correcting an error in the original code, but I would need to think of a completely different (much more efficient) approach before I could compete with 1st/2nd place winners.
