@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Services\LaraconPuzzle1;
 use App\Services\LaraconPuzzle2;
+use App\Services\LaraconPuzzle3;
 use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +26,16 @@ class LaraconPuzzleTest extends TestCase
 
         $x = Storage::get('laracon-puzzle-02-input.txt');
         $actual = LaraconPuzzle2::solve($x);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function test_puzzle_3_output(): void
+    {
+        $expected = Storage::get('laracon-puzzle-03-output.txt');
+
+        $x = Storage::get('laracon-puzzle-03-input.txt');
+        $actual = LaraconPuzzle3::solve($x);
 
         $this->assertEquals($expected, $actual);
     }
