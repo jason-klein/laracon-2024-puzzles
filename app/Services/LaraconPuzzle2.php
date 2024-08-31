@@ -9,43 +9,48 @@ class LaraconPuzzle2
         // Start output buffering
         ob_start();
 
-        // SOLUTION (958 bytes)
+        // SOLUTION (752 bytes)
+        // * Variable Substitution
+        // * Reduce Metadata (calculate Column Names from Key Names)
+        // * Remove Default Parameters
 
-        $records = json_decode($x, true);
+        $j = json_decode($x, true);
 
-        $meta = [
-            'landmark' => ['Landmark', 26],
-            'city' => ['City', 11],
-            'build_cost' => ['Build Cost', 16],
-            'attendance_record' => ['Attendance Record', 44],
-        ];
+        //[
+        //    'landmark'=>26,
+        //    'city'=>11,
+        //    'build_cost'=>16,
+        //    'attendance_record'=>44,
+        //]
+        $m = array_combine(array_keys($j[0]), [26, 11, 16, 44]);
 
         // header
-        $separatorParts = [];
-        $titleParts = [];
-        foreach ($meta as $vals) {
-            $separatorParts[] = str_repeat('-', $vals[1]);
-            $titleParts[] = str_pad($vals[0], $vals[1] - 2, ' ', STR_PAD_RIGHT);
+        $w = [];
+        $y = [];
+        foreach ($m as $k => $l) {
+            $w[] = str_repeat('-', $l);
+            $n = ucwords(str_replace('_', ' ', $k));
+            $y[] = str_pad($n, $l - 2, ' ', STR_PAD_RIGHT);
         }
-        $separator = '+'.implode('+', $separatorParts)."+\n";
-        $title = '| '.implode(' | ', $titleParts)." |\n";
+        $s = '+'.implode('+', $w)."+\n";
+        $t = '| '.implode(' | ', $y)." |\n";
 
         // body
-        $body = '';
-        foreach ($records as $record) {
-            $bodyParts = [];
-            foreach ($meta as $key => $vals) {
-                $string = $record[$key];
-                if ($key === 'build_cost') {
-                    $string = '$'.number_format($string, 0);
+        $b = '';
+        foreach ($j as $c) {
+            $z = [];
+            foreach ($m as $k => $l) {
+                $v = $c[$k];
+                if ($k === 'build_cost') {
+                    $v = '$'.number_format($v);
                 }
-                $bodyParts[] = str_pad($string, $vals[1] - 2, ' ', STR_PAD_RIGHT);
+                $z[] = str_pad($v, $l - 2);
             }
-            $body .= '| '.implode(' | ', $bodyParts)." |\n";
+            $b .= '| '.implode(' | ', $z)." |\n";
         }
 
         // output
-        echo $separator.$title.$separator.$body.$separator;
+        echo $s.$t.$s.$b.$s;
 
         // Return output buffer and stop output buffering
         return ob_get_clean();
