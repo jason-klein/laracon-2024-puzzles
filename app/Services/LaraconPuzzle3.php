@@ -9,7 +9,7 @@ class LaraconPuzzle3
         // Start output buffering
         ob_start();
 
-        // SOLUTION (260 bytes)
+        // SOLUTION (250 bytes)
         // * Variable Substitution
         // * Remove Unused Variables
         // * Remove Variables
@@ -25,8 +25,10 @@ class LaraconPuzzle3
         // * Remove Braces
         // * Remove trim()
         // * Remove Variable
+        // * Remove Whitespace (-2)
+        // * Remove !empty() -- not working with PHP 8.2, but puzzle site did not require this
 
-        foreach(explode("\n",$x)as$x=>$l)for($y=0;$y<10;$y++)$d[$x][$y]=$l[$y]??'';for($y=10;$y>=0;$y--){$f=9;for($x=9;$x>=0;$x--)if(!empty($d[$x][$y])){$d[$f--+1][$y]=$d[$x][$y];$d[$x][$y]='';}}for($x=2;$x<11;$x++){for($y=0;$y<=10;$y++)echo $d[$x][$y]??'';echo "\n";}
+        foreach(explode("\n",$x)as$x=>$l)for($y=0;$y<10;$y++)$d[$x][$y]=$l[$y]??'';for($y=10;$y>=0;$y--){$f=9;for($x=9;$x>=0;$x--)if($d[$x][$y]){$d[$f--+1][$y]=$d[$x][$y];$d[$x][$y]='';}}for($x=2;$x<11;$x++){for($y=0;$y<=10;$y++)echo$d[$x][$y]??'';echo"\n";}
 
         // Return output buffer and stop output buffering
         return ob_get_clean();
