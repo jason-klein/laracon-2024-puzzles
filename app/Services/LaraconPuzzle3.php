@@ -9,35 +9,27 @@ class LaraconPuzzle3
         // Start output buffering
         ob_start();
 
-        // SOLUTION (891 bytes)
+        // SOLUTION (648 bytes)
+        // * Variable Substitution
+        // * Remove Unused Variables
+        // * Remove Variables
 
-        $lines = explode("\n", $x);
-
-        $data = [];
-        $rows = 0;
-        $cols = 0;
-        foreach ($lines as $x => $line) {
+        $d = [];
+        foreach (explode("\n", $x) as $x => $l) {
             // loop through each character in $line
             for ($y = 0; $y < 10; $y++) {
-                $data[$x][$y] = $line[$y] ?? null;
-                if ($y > $cols) {
-                    $cols = $y;
-                }
-            }
-            if ($x > $rows) {
-                $rows = $x;
+                $d[$x][$y] = $l[$y]??'';
             }
         }
 
         // loop through all lines in reverse
         for ($y = 10; $y >= 0; $y--) {
-            $xFull = 9;
+            $f = 9;
             for ($x = 9; $x >= 0; $x--) {
-                if (!empty($data[$x][$y])) {
-                    //echo 'swap '.$x.' '.$y."\n";
-                    $data[$xFull+1][$y] = $data[$x][$y];
-                    $data[$x][$y] = '';
-                    $xFull--;
+                if (!empty($d[$x][$y])) {
+                    $d[$f+1][$y] = $d[$x][$y];
+                    $d[$x][$y] = '';
+                    $f--;
                 }
             }
         }
@@ -45,11 +37,11 @@ class LaraconPuzzle3
         // consolidate data array into lines
         $output = '';
         for ($x = 2; $x < 11; $x++) {
-            $line = '';
+            $l = '';
             for ($y = 0; $y <= 10; $y++) {
-                $line .= $data[$x][$y] ?? ' ';
+                $l .= $d[$x][$y] ?? ' ';
             }
-            $output .= trim($line)."\n";
+            $output .= trim($l)."\n";
         }
 
         // output
