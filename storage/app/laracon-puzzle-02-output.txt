@@ -1,0 +1,11 @@
++--------------------------+-----------+----------------+--------------------------------------------+
+| Landmark                 | City      | Build Cost     | Attendance Record                          |
++--------------------------+-----------+----------------+--------------------------------------------+
+| AT&T Stadium             | Arlington | $1,200,000,000 | 108,713 (NBA All-Star Game, 2010)          |
+| American Airlines Center | Dallas    | $420,000,000   | 21,146 (Basketball configuration maximum)  |
+| Globe Life Field         | Arlington | $1,200,000,000 | 43,598 (Morgan Wallen concert, 2022)       |
+| Cotton Bowl              | Dallas    | $6,800,000     | 96,009 (Texas vs. Oklahoma football, 2009) |
+| Fair Park                | Dallas    | $500,000,000   | 2.5 million (2023 State Fair of Texas)     |
+| Six Flags Over Texas     | Arlington | $1,000,000     | 2.1 million (annual attendance, 2023)      |
+| Toyota Stadium           | Frisco    | $80,000,000    | 22,565 (FC Dallas vs. LA Galaxy, 2012)     |
++--------------------------+-----------+----------------+--------------------------------------------+
